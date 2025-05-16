@@ -3,16 +3,22 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Events from "@/components/Events";
+import Gallery from "@/components/Gallery";
 import Register from "@/components/Register";
 import Footer from "@/components/Footer";
+import LanguageToggle from "@/components/LanguageToggle";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <div className="fixed top-4 right-4 z-50">
+        <LanguageToggle />
+      </div>
       <Navbar />
       <Hero />
       <About />
       <Events />
+      <Gallery />
       <Register />
       <Footer />
     </div>
