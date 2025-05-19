@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Navbar = () => {
+  const { language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -14,6 +16,16 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navItems = [
+    { id: "home", label: { en: "Home", am: "Գլխավոր" } },
+    { id: "about", label: { en: "About", am: "Մեր մասին" } },
+    { id: "rules", label: { en: "Rules", am: "Կանոններ" } },
+    { id: "events", label: { en: "Events", am: "Միջոցառումներ" } },
+    { id: "register", label: { en: "Register", am: "Գրանցվել" } },
+    { id: "downloads", label: { en: "Downloads", am: "Ներբեռնումներ" } },
+    { id: "contact", label: { en: "Contact", am: "Կապ" } }
+  ];
 
   return (
     <nav
@@ -35,21 +47,21 @@ const Navbar = () => {
             </div>
           </div>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-arc-darkblue via-arc-blue to-arc-yellow bg-clip-text text-transparent">
-            Armenian Robotics Challenge
+            {language === 'en' ? 'Armenian Robotics Challenge' : 'Հայկական Ռոբոտաշինության Մարտահրավեր'}
           </h1>
         </div>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {["Home", "About", "Events", "Register", "Contact"].map((item, index) => (
+          {navItems.map((item, index) => (
             <a
               key={index}
-              href={`#${item.toLowerCase()}`}
+              href={`#${item.id}`}
               className={`text-arc-darkblue font-medium hover:text-arc-blue transition-colors duration-300 
                 relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full 
                 after:h-0.5 after:bg-arc-yellow after:transition-all after:duration-300`}
             >
-              {item}
+              {item.label[language]}
             </a>
           ))}
           <div className="ml-4">
@@ -81,14 +93,14 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg animate-accordion-down">
           <div className="container mx-auto px-4 py-2 flex flex-col space-y-3">
-            {["Home", "About", "Events", "Register", "Contact"].map((item, index) => (
+            {navItems.map((item, index) => (
               <a
                 key={index}
-                href={`#${item.toLowerCase()}`}
+                href={`#${item.id}`}
                 className="text-arc-darkblue font-medium py-2 border-b border-gray-100"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {item}
+                {item.label[language]}
               </a>
             ))}
           </div>

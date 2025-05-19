@@ -2,10 +2,13 @@
 import { useLanguage } from "@/hooks/useLanguage";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Download, Upload } from "lucide-react";
+import { useState } from "react";
+import { toast } from "@/components/ui/use-toast";
 
 const Downloads = () => {
   const { language } = useLanguage();
+  const [files, setFiles] = useState<Record<string, File | null>>({});
 
   const categories = [
     {
@@ -94,13 +97,71 @@ const Downloads = () => {
     downloadButton: {
       en: "Download",
       am: "Ներբեռնել"
+    },
+    uploadButton: {
+      en: "Upload PDF",
+      am: "Վերբեռնել PDF"
+    },
+    adminMode: {
+      en: "Admin Mode",
+      am: "Ադմինիստրատորի ռեժիմ"
+    },
+    fileUploaded: {
+      en: "File uploaded successfully",
+      am: "Ֆայլը հաջողությամբ վերբեռնվել է"
+    },
+    fileRequired: {
+      en: "Please select a PDF file",
+      am: "Խնդրում ենք ընտրել PDF ֆայլ"
+    },
+    invalidFileType: {
+      en: "Only PDF files are allowed",
+      am: "Թույլատրվում են միայն PDF ֆայլերը"
     }
   };
+
+  const [isAdminMode, setIsAdminMode] = useState(false);
 
   const handleDownload = (fileName: string) => {
     // In a real application, this would download the actual file
     alert(`Download requested for: ${fileName}`);
     // You would typically use window.open() or similar to trigger the actual download
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, fileName: string) => {
+    const file = event.target.files?.[0];
+    
+    if (!file) {
+      toast({
+        title: downloadTexts.fileRequired[language],
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    if (file.type !== 'application/pdf') {
+      toast({
+        title: downloadTexts.invalidFileType[language],
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setFiles(prev => ({
+      ...prev,
+      [fileName]: file
+    }));
+    
+    toast({
+      title: downloadTexts.fileUploaded[language],
+      description: file.name
+    });
+
+    // In a real application with backend:
+    // 1. Create FormData
+    // 2. Append the file to it
+    // 3. Send it to your server using fetch or axios
+    // 4. Update UI based on the response
   };
 
   return (
@@ -113,6 +174,16 @@ const Downloads = () => {
           </p>
         </div>
 
+        <div className="text-right mb-4">
+          <Button 
+            variant="outline" 
+            onClick={() => setIsAdminMode(!isAdminMode)}
+            className="text-sm"
+          >
+            {isAdminMode ? "✓ " : ""}{downloadTexts.adminMode[language]}
+          </Button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category) => (
             <Card key={category.id} className="hover-scale transition-all duration-300">
@@ -123,11 +194,34 @@ const Downloads = () => {
               <CardContent>
                 <Button 
                   onClick={() => handleDownload(category.fileName)}
-                  className="w-full"
+                  className="w-full mb-2"
                 >
                   <Download className="mr-2" />
                   {downloadTexts.downloadButton[language]}
                 </Button>
+
+                {isAdminMode && (
+                  <div className="mt-3">
+                    <input
+                      type="file"
+                      id={`file-${category.id}`}
+                      accept=".pdf"
+                      className="hidden"
+                      onChange={(e) => handleFileChange(e, category.fileName)}
+                    />
+                    <label htmlFor={`file-${category.id}`}>
+                      <Button variant="outline" className="w-full cursor-pointer">
+                        <Upload className="mr-2" />
+                        {downloadTexts.uploadButton[language]}
+                      </Button>
+                    </label>
+                    {files[category.fileName] && (
+                      <p className="text-xs text-green-600 mt-1 truncate">
+                        {files[category.fileName]?.name}
+                      </p>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
