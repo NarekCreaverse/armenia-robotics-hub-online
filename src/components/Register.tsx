@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -20,8 +21,10 @@ const Register = () => {
     },
     {
       number: 2,
-      title: "Form Your Team",
-      description: "Build a team of 2 to 5 participants. Choose a unique team name and appoint a team captain.",
+      title: language === 'en' ? "Form Your Team" : "Կազմեք Ձեր թիմը",
+      description: language === 'en' ? 
+        "Build a team of 2 to 5 participants. Choose a unique team name and appoint a team captain." : 
+        "Կազմեք 2-ից 5 մասնակիցներից բաղկացած թիմ։ Ընտրեք թիմի յուրահատուկ անունը և նշանակեք թիմի ավագին։",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -30,8 +33,10 @@ const Register = () => {
     },
     {
       number: 3,
-      title: "Submit Your Entry",
-      description: "Complete the online registration form. Upload your team roster and robot specifications (maximum weight: 3 kg).",
+      title: language === 'en' ? "Submit Your Entry" : "Ներկայացրեք Ձեր հայտը",
+      description: language === 'en' ? 
+        "Complete the online registration form. Upload your team roster and robot specifications (maximum weight: 3 kg)." : 
+        "Լրացրեք առցանց գրանցման ձևը։ Վերբեռնեք Ձեր թիմի ցուցակը և ռոբոտի բնութագրերը (առավելագույն քաշը՝ 3 կգ)։",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -40,8 +45,10 @@ const Register = () => {
     },
     {
       number: 4,
-      title: "Pay the Registration Fee",
-      description: "Standard fee: 15,000 AMD per team. Students receive a 20% discount (valid student ID required).",
+      title: language === 'en' ? "Pay the Registration Fee" : "Վճարեք գրանցման վճարը",
+      description: language === 'en' ? 
+        "Standard fee: 15,000 AMD per team. Students receive a 20% discount (valid student ID required)." : 
+        "Ստանդարտ վճար՝ 15,000 դրամ մեկ թիմի համար։ Ուսանողները ստանում են 20% զեղչ (պահանջվում է ուսանողական վավեր վկայական)։",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -50,8 +57,10 @@ const Register = () => {
     },
     {
       number: 5,
-      title: "Get Confirmation",
-      description: "You'll receive a confirmation email with all the necessary next steps and instructions.",
+      title: language === 'en' ? "Get Confirmation" : "Ստացեք հաստատում",
+      description: language === 'en' ? 
+        "You'll receive a confirmation email with all the necessary next steps and instructions." : 
+        "Դուք կստանաք հաստատման էլ․ նամակ բոլոր անհրաժեշտ հաջորդ քայլերի և հրահանգների հետ միասին։",
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -64,9 +73,13 @@ const Register = () => {
     <section id="register" className="py-20 bg-gradient-to-b from-arc-blue/10 to-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="section-heading">How To Register</h2>
+          <h2 className="section-heading">
+            {language === 'en' ? 'How To Register' : 'Ինչպես գրանցվել'}
+          </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Follow these steps to join the Armenian Robotics Challenge
+            {language === 'en' 
+              ? 'Follow these steps to join the Armenian Robotics Challenge'
+              : 'Հետևեք այս քայլերին՝ միանալու Հայկական Ռոբոտաշինության Մարտահրավերին'}
           </p>
         </div>
 
@@ -99,7 +112,7 @@ const Register = () => {
                 <span className={`text-xs md:text-sm font-medium ${
                   activeStep === step.number ? "text-arc-blue" : "text-gray-600"
                 }`}>
-                  Step {step.number}
+                  {language === 'en' ? `Step ${step.number}` : `Քայլ ${step.number}`}
                 </span>
               </button>
             ))}
@@ -134,21 +147,21 @@ const Register = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
                 </svg>
-                Previous
+                {language === 'en' ? 'Previous' : 'Նախորդը'}
               </button>
               {activeStep < steps.length ? (
                 <button
                   onClick={() => setActiveStep(prev => Math.min(prev + 1, steps.length))}
                   className="btn-primary text-sm"
                 >
-                  Next Step
+                  {language === 'en' ? 'Next Step' : 'Հաջորդ քայլը'}
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </button>
               ) : (
                 <a href="#" className="btn-primary text-sm">
-                  Begin Registration
+                  {language === 'en' ? 'Begin Registration' : 'Սկսել գրանցումը'}
                 </a>
               )}
             </div>
@@ -157,12 +170,16 @@ const Register = () => {
 
         <div className="mt-16 text-center">
           <div className="glass-card max-w-2xl mx-auto p-6">
-            <h3 className="text-xl font-bold text-arc-darkblue mb-4">Need Help With Registration?</h3>
+            <h3 className="text-xl font-bold text-arc-darkblue mb-4">
+              {language === 'en' ? 'Need Help With Registration?' : 'Օգնության կարիք ունե՞ք գրանցման հետ'}
+            </h3>
             <p className="text-gray-700 mb-6">
-              Our team is ready to assist you with any questions regarding the registration process or competition requirements.
+              {language === 'en' 
+                ? 'Our team is ready to assist you with any questions regarding the registration process or competition requirements.'
+                : 'Մեր թիմը պատրաստ է օգնել ձեզ գրանցման գործընթացի կամ մրցույթի պահանջների վերաբերյալ ցանկացած հարցով։'}
             </p>
             <a href="#" className="btn-secondary">
-              Contact Support
+              {language === 'en' ? 'Contact Support' : 'Կապ սպասարկման բաժնի հետ'}
             </a>
           </div>
         </div>

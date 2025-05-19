@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import LanguageToggle from "./LanguageToggle";
@@ -22,8 +21,9 @@ const Navbar = () => {
     { id: "about", label: { en: "About", am: "Մեր մասին" } },
     { id: "rules", label: { en: "Rules", am: "Կանոններ" } },
     { id: "events", label: { en: "Events", am: "Միջոցառումներ" } },
-    { id: "register", label: { en: "Register", am: "Գրանցվել" } },
+    { id: "gallery", label: { en: "Gallery", am: "Պատկերասրահ" } },
     { id: "downloads", label: { en: "Downloads", am: "Ներբեռնումներ" } },
+    { id: "register", label: { en: "Register", am: "Գրանցվել" } },
     { id: "contact", label: { en: "Contact", am: "Կապ" } }
   ];
 

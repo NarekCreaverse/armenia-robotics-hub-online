@@ -1,6 +1,19 @@
 
+import { useLanguage } from "@/hooks/useLanguage";
+
 const Footer = () => {
+  const { language } = useLanguage();
   const currentYear = new Date().getFullYear();
+
+  const quickLinks = [
+    { id: "home", label: { en: "Home", am: "Գլխավոր" }},
+    { id: "about", label: { en: "About", am: "Մեր մասին" }},
+    { id: "events", label: { en: "Events", am: "Միջոցառումներ" }},
+    { id: "gallery", label: { en: "Gallery", am: "Պատկերասրահ" }},
+    { id: "register", label: { en: "Register", am: "Գրանցվել" }},
+    { id: "downloads", label: { en: "Downloads", am: "Ներբեռնումներ" }},
+    { id: "contact", label: { en: "Contact", am: "Կապ" }}
+  ];
 
   return (
     <footer className="bg-arc-darkblue text-white py-12">
@@ -15,11 +28,13 @@ const Footer = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-bold">
-                Armenian Robotics Challenge
+                {language === 'en' ? 'Armenian Robotics Challenge' : 'Հայկական Ռոբոտաշինության Մարտահրավեր'}
               </h3>
             </div>
             <p className="text-gray-300 text-sm mb-4">
-              Building Armenia's tech future through innovation, education, and friendly competition.
+              {language === 'en' 
+                ? 'Building Armenia\'s tech future through innovation, education, and friendly competition.'
+                : 'Կառուցելով Հայաստանի տեխնոլոգիական ապագան նորարարության, կրթության և ընկերական մրցակցության միջոցով։'}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-white hover:text-arc-yellow transition-colors">
@@ -46,15 +61,17 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4">
+              {language === 'en' ? 'Quick Links' : 'Արագ հղումներ'}
+            </h3>
             <ul className="space-y-2 text-gray-300">
-              {["Home", "About", "Events", "Gallery", "Register", "FAQs", "Contact"].map((item, index) => (
+              {quickLinks.map((item, index) => (
                 <li key={index}>
                   <a 
-                    href={`#${item.toLowerCase()}`} 
+                    href={`#${item.id}`} 
                     className="hover:text-arc-yellow transition-colors inline-block"
                   >
-                    {item}
+                    {item.label[language]}
                   </a>
                 </li>
               ))}
@@ -62,7 +79,9 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4">Contact Info</h3>
+            <h3 className="text-lg font-bold mb-4">
+              {language === 'en' ? 'Contact Info' : 'Կապի տվյալներ'}
+            </h3>
             <ul className="space-y-3 text-gray-300">
               <li className="flex">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-arc-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -87,14 +106,18 @@ const Footer = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-bold mb-4">Newsletter</h3>
+            <h3 className="text-lg font-bold mb-4">
+              {language === 'en' ? 'Newsletter' : 'Տեղեկագիր'}
+            </h3>
             <p className="text-gray-300 text-sm mb-4">
-              Subscribe to our newsletter to receive updates about upcoming events and competitions.
+              {language === 'en'
+                ? 'Subscribe to our newsletter to receive updates about upcoming events and competitions.'
+                : 'Բաժանորդագրվեք մեր տեղեկագրին՝ առաջիկա միջոցառումների և մրցույթների մասին թարմացումներ ստանալու համար։'}
             </p>
             <form className="flex">
               <input
                 type="email"
-                placeholder="Your email"
+                placeholder={language === 'en' ? "Your email" : "Ձեր էլ. փոստը"}
                 className="px-4 py-2 w-full rounded-l-md focus:outline-none focus:ring-2 focus:ring-arc-yellow"
               />
               <button
@@ -110,7 +133,9 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-700 mt-10 pt-6 text-center text-gray-400 text-sm">
-          <p>© {currentYear} Armenian Robotics Challenge. All rights reserved.</p>
+          <p>
+            © {currentYear} {language === 'en' ? 'Armenian Robotics Challenge. All rights reserved.' : 'Հայկական Ռոբոտաշինության Մարտահրավեր: Բոլոր իրավունքները պաշտպանված են։'}
+          </p>
         </div>
       </div>
     </footer>
