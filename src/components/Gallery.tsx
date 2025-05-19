@@ -5,74 +5,74 @@ import { useLanguage } from "@/hooks/useLanguage";
 const galleryImages = [
   {
     id: 1,
-    src: "https://placehold.co/600x400/1E88E5/FFFFFF?text=Robot+Competition+1",
+    src: "/lovable-uploads/d51f2a0c-1d0d-446d-bda5-97a0e08cafa0.png",
     title: {
-      en: "Robot Competition 2024",
-      am: "Ռոբոտների մրցույթ 2024"
+      en: "Award Ceremony",
+      am: "Մրցանակաբաշխություն"
     },
     description: {
-      en: "Teams showcasing their innovative robot designs",
-      am: "Թիմերը ցուցադրում են իրենց նորարարական ռոբոտների դիզայնը"
+      en: "Participants receiving awards at the robotics competition",
+      am: "Մասնակիցները ստանում են մրցանակներ ռոբոտաշինության մրցույթում"
     },
   },
   {
     id: 2,
-    src: "https://placehold.co/600x400/0D47A1/FFFFFF?text=Workshop",
+    src: "/lovable-uploads/cf750430-bbd7-4dd7-b8f2-c36bede21622.png",
     title: {
-      en: "Technical Workshop",
-      am: "Տեխնիկական սեմինար"
+      en: "URC Presentation",
+      am: "URC ներկայացում"
     },
     description: {
-      en: "Students learning advanced robotics techniques",
-      am: "Ուսանողները սովորում են ռոբոտաշինության առաջադեմ տեխնիկա"
+      en: "Universal Robotics Challenge official presentation",
+      am: "Universal Robotics Challenge պաշտոնական ներկայացում"
     },
   },
   {
     id: 3,
-    src: "https://placehold.co/600x400/FFC107/000000?text=Awards+Ceremony",
+    src: "/lovable-uploads/774b00b7-f4e9-4ec1-937a-a0bcedda4d7b.png",
     title: {
-      en: "Awards Ceremony",
-      am: "Մրցանակաբաշխություն"
+      en: "Team Photo",
+      am: "Թիմային լուսանկար"
     },
     description: {
-      en: "Celebrating the achievements of all participants",
-      am: "Նշելով բոլոր մասնակիցների ձեռքբերումները"
+      en: "Armenian team with their robot creations",
+      am: "Հայկական թիմը իրենց ռոբոտների հետ"
     },
   },
   {
     id: 4,
-    src: "https://placehold.co/600x400/1E88E5/FFFFFF?text=Team+Building",
+    src: "https://placehold.co/600x400/1E88E5/FFFFFF?text=Robot+Competition",
     title: {
-      en: "Team Building",
-      am: "Թիմային աշխատանք"
+      en: "Robot Competition",
+      am: "Ռոբոտների մրցույթ"
     },
     description: {
-      en: "Collaborative activities to strengthen teamwork",
-      am: "Համագործակցության միջոցառումներ՝ թիմային աշխատանքն ամրապնդելու համար"
+      en: "Competitive event showcasing innovative robots",
+      am: "Մրցութային միջոցառում, որտեղ ցուցադրվում են նորարարական ռոբոտներ"
     },
   },
   {
     id: 5,
-    src: "https://placehold.co/600x400/0D47A1/FFFFFF?text=Robot+Testing",
+    src: "https://placehold.co/600x400/0D47A1/FFFFFF?text=Robotics+Workshop",
     title: {
-      en: "Robot Testing",
-      am: "Ռոբոտների փորձարկում"
+      en: "Robotics Workshop",
+      am: "Ռոբոտաշինության աշխատարան"
     },
     description: {
-      en: "Final preparations before the competition",
-      am: "Վերջնական նախապատրաստություններ մրցույթից առաջ"
+      en: "Educational workshop for robotics enthusiasts",
+      am: "Կրթական աշխատարան ռոբոտաշինության սիրահարների համար"
     },
   },
   {
     id: 6,
-    src: "https://placehold.co/600x400/FFC107/000000?text=Mentorship",
+    src: "https://placehold.co/600x400/FFC107/000000?text=Innovation",
     title: {
-      en: "Mentorship Program",
-      am: "Մենթորության ծրագիր"
+      en: "Innovation Corner",
+      am: "Նորարարության անկյուն"
     },
     description: {
-      en: "Professional engineers guiding young talents",
-      am: "Պրոֆեսիոնալ ճարտարագետները ուղղորդում են երիտասարդ տաղանդներին"
+      en: "Showcasing the latest in robotics technology",
+      am: "Ռոբոտաշինության վերջին տեխնոլոգիաների ցուցադրում"
     },
   },
 ];
