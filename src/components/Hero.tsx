@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 const Hero = () => {
@@ -46,10 +45,10 @@ const Hero = () => {
           </div>
           
           <div className="w-full md:w-1/2 flex flex-col items-center space-y-6">
-            {/* Robotics Challenge Banner Image */}
+            {/* Updated Robotics Challenge Banner Image */}
             <div className="w-full max-w-2xl opacity-0 animate-bounce-in animate-delay-300" style={{animationFillMode: "forwards"}}>
               <img 
-                src="/lovable-uploads/d60261e8-b906-49a1-8321-2bc49f751a54.png" 
+                src="/lovable-uploads/2f400861-a86a-467c-8e51-3aa63cf3e2f8.png" 
                 alt="Armenian Robotics Challenge 2025" 
                 className="w-full h-auto rounded-lg shadow-lg hover-scale"
               />
