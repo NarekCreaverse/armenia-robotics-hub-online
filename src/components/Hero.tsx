@@ -47,9 +47,9 @@ const Hero = () => {
           
           <div className="w-full md:w-1/2 flex flex-col items-center space-y-6">
             {/* Robotics Challenge Banner Image */}
-            <div className="w-full max-w-lg opacity-0 animate-bounce-in animate-delay-300" style={{animationFillMode: "forwards"}}>
+            <div className="w-full max-w-xl opacity-0 animate-bounce-in animate-delay-300" style={{animationFillMode: "forwards"}}>
               <img 
-                src="/lovable-uploads/f8147441-bc85-460b-bc20-5091c5dd7d58.png" 
+                src="/lovable-uploads/d60261e8-b906-49a1-8321-2bc49f751a54.png" 
                 alt="Armenian Robotics Challenge 2025" 
                 className="w-full h-auto rounded-lg shadow-lg hover-scale"
               />
