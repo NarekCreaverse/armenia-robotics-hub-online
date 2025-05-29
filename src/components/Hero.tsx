@@ -70,72 +70,10 @@ const Hero = () => {
                 <a href="#about" className="btn-secondary">Learn More</a>
               </div>
             </div>
-            
-            <div className="w-full md:w-1/2 flex flex-col items-center space-y-6">
-              <CountdownTimer />
-            </div>
           </div>
         </div>
       </section>
     </>
-  );
-};
-
-const CountdownTimer = () => {
-  const targetDate = new Date('June 14, 2025 00:00:00').getTime();
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance < 0) {
-        clearInterval(interval);
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return;
-      }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [targetDate]);
-
-  const timeUnits = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds }
-  ];
-
-  return (
-    <div className="glass-card p-4 rounded-xl shadow-lg w-full max-w-sm opacity-0 animate-bounce-in animate-delay-500" style={{animationFillMode: "forwards"}}>
-      <h2 className="text-lg font-bold text-arc-darkblue mb-3 text-center">Next Challenge Starts In:</h2>
-      <div className="grid grid-cols-4 gap-1">
-        {timeUnits.map((unit, i) => (
-          <div key={unit.label} className="flex flex-col items-center">
-            <div className="bg-arc-blue text-white text-xl md:text-2xl font-bold w-full py-2 rounded-md mb-1 animate-pulse-glow" style={{ animationDelay: `${i * 0.2}s` }}>
-              {String(unit.value).padStart(2, '0')}
-            </div>
-            <span className="text-gray-600 text-xs">{unit.label}</span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 text-center">
-        <span className="text-arc-darkblue font-medium text-sm">June 14, 2025</span>
-      </div>
-    </div>
   );
 };
 
