@@ -45,7 +45,17 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="w-full md:w-1/2 flex justify-center">
+          <div className="w-full md:w-1/2 flex flex-col items-center space-y-6">
+            {/* Robotics Challenge Banner Image */}
+            <div className="w-full max-w-lg opacity-0 animate-bounce-in animate-delay-300" style={{animationFillMode: "forwards"}}>
+              <img 
+                src="/lovable-uploads/f8147441-bc85-460b-bc20-5091c5dd7d58.png" 
+                alt="Armenian Robotics Challenge 2025" 
+                className="w-full h-auto rounded-lg shadow-lg hover-scale"
+              />
+            </div>
+            
+            {/* Countdown Timer - Made Smaller */}
             <CountdownTimer />
           </div>
         </div>
@@ -93,20 +103,20 @@ const CountdownTimer = () => {
   ];
 
   return (
-    <div className="glass-card p-6 rounded-2xl shadow-xl w-full max-w-md opacity-0 animate-bounce-in animate-delay-400" style={{animationFillMode: "forwards"}}>
-      <h2 className="text-2xl font-bold text-arc-darkblue mb-4">Next Challenge Starts In:</h2>
-      <div className="grid grid-cols-4 gap-2">
+    <div className="glass-card p-4 rounded-xl shadow-lg w-full max-w-sm opacity-0 animate-bounce-in animate-delay-500" style={{animationFillMode: "forwards"}}>
+      <h2 className="text-lg font-bold text-arc-darkblue mb-3 text-center">Next Challenge Starts In:</h2>
+      <div className="grid grid-cols-4 gap-1">
         {timeUnits.map((unit, i) => (
           <div key={unit.label} className="flex flex-col items-center">
-            <div className="bg-arc-blue text-white text-3xl md:text-4xl font-bold w-full py-4 rounded-lg mb-2 animate-pulse-glow" style={{ animationDelay: `${i * 0.2}s` }}>
+            <div className="bg-arc-blue text-white text-xl md:text-2xl font-bold w-full py-2 rounded-md mb-1 animate-pulse-glow" style={{ animationDelay: `${i * 0.2}s` }}>
               {String(unit.value).padStart(2, '0')}
             </div>
-            <span className="text-gray-600 text-xs md:text-sm">{unit.label}</span>
+            <span className="text-gray-600 text-xs">{unit.label}</span>
           </div>
         ))}
       </div>
-      <div className="mt-6 text-center">
-        <span className="text-arc-darkblue font-medium">June 14, 2025</span>
+      <div className="mt-3 text-center">
+        <span className="text-arc-darkblue font-medium text-sm">June 14, 2025</span>
       </div>
     </div>
   );
