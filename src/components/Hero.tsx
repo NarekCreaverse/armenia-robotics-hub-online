@@ -2,7 +2,19 @@ import { useEffect, useState } from "react";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section 
+      id="home" 
+      className="relative h-screen flex items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: "url('/lovable-uploads/2f400861-a86a-467c-8e51-3aa63cf3e2f8.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40 z-1"></div>
+
       {/* Background with animated gear patterns */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-20 left-10 opacity-10 animate-rotate-gear w-48 h-48">
@@ -30,7 +42,7 @@ const Hero = () => {
                 Armenian Robotics Challenge
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-700 mb-8 opacity-0 animate-slide-in animate-delay-200" style={{animationFillMode: "forwards"}}>
+            <p className="text-xl md:text-2xl text-white mb-8 opacity-0 animate-slide-in animate-delay-200" style={{animationFillMode: "forwards"}}>
               Igniting innovation through competition and collaboration
             </p>
             <div className="flex gap-4 opacity-0 animate-slide-in animate-delay-300" style={{animationFillMode: "forwards"}}>
@@ -45,16 +57,7 @@ const Hero = () => {
           </div>
           
           <div className="w-full md:w-1/2 flex flex-col items-center space-y-6">
-            {/* Updated Robotics Challenge Banner Image */}
-            <div className="w-full max-w-2xl opacity-0 animate-bounce-in animate-delay-300" style={{animationFillMode: "forwards"}}>
-              <img 
-                src="/lovable-uploads/2f400861-a86a-467c-8e51-3aa63cf3e2f8.png" 
-                alt="Armenian Robotics Challenge 2025" 
-                className="w-full h-auto rounded-lg shadow-lg hover-scale"
-              />
-            </div>
-            
-            {/* Countdown Timer - Made Smaller */}
+            {/* Countdown Timer */}
             <CountdownTimer />
           </div>
         </div>
