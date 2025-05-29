@@ -18,10 +18,6 @@ const Navbar = () => {
   }, []);
 
   const navItems = [
-    { id: "home", label: { en: "Home", am: "Գլխավոր" } },
-    { id: "about", label: { en: "About", am: "Մեր մասին" } },
-    { id: "rules", label: { en: "Rules", am: "Կանոններ" } },
-    { id: "events", label: { en: "Events", am: "Միջոցառումներ" } },
     { id: "gallery", label: { en: "Gallery", am: "Պատկերասրահ" } },
     { id: "downloads", label: { en: "Downloads", am: "Ներբեռնումներ" } },
     { id: "register", label: { en: "Register", am: "Գրանցվել" } }

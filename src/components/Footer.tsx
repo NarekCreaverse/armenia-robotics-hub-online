@@ -6,9 +6,6 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { id: "home", label: { en: "Home", am: "Գլխավոր" }},
-    { id: "about", label: { en: "About", am: "Մեր մասին" }},
-    { id: "events", label: { en: "Events", am: "Միջոցառումներ" }},
     { id: "gallery", label: { en: "Gallery", am: "Պատկերասրահ" }},
     { id: "register", label: { en: "Register", am: "Գրանցվել" }},
     { id: "downloads", label: { en: "Downloads", am: "Ներբեռնումներ" }}
