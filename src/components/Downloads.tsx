@@ -1,10 +1,21 @@
+
 import { useLanguage } from "@/hooks/useLanguage";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Download, Upload } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 const Downloads = () => {
   const { language } = useLanguage();
+  const { toast } = useToast();
+  const [uploadedPdfs, setUploadedPdfs] = useState<Array<{
+    id: number;
+    name: string;
+    url: string;
+    file: File;
+  }>>([]);
 
   const categories = [
     {
@@ -106,6 +117,18 @@ const Downloads = () => {
     downloadButton: {
       en: "Download",
       am: "Ներբեռնել"
+    },
+    uploadTitle: {
+      en: "Upload PDF",
+      am: "Բեռնել PDF"
+    },
+    uploadButton: {
+      en: "Upload",
+      am: "Բեռնել"
+    },
+    uploadedFiles: {
+      en: "Uploaded Files",
+      am: "Բեռնված ֆայլեր"
     }
   };
 
@@ -126,6 +149,41 @@ const Downloads = () => {
     }
   };
 
+  const handlePdfUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      const url = URL.createObjectURL(file);
+      const newPdf = {
+        id: Date.now(),
+        name: file.name,
+        url: url,
+        file: file
+      };
+      setUploadedPdfs(prev => [...prev, newPdf]);
+      toast({
+        title: language === 'en' ? "PDF Uploaded" : "PDF բեռնված է",
+        description: language === 'en' ? `${file.name} has been uploaded successfully` : `${file.name} բեռնվել է հաջողությամբ`,
+      });
+      // Reset the input
+      event.target.value = '';
+    } else {
+      toast({
+        title: language === 'en' ? "Invalid File" : "Անվավեր ֆայլ",
+        description: language === 'en' ? "Please select a PDF file" : "Խնդրում ենք ընտրել PDF ֆայլ",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const handlePdfDownload = (pdf: { name: string; url: string; file: File }) => {
+    const link = document.createElement('a');
+    link.href = pdf.url;
+    link.download = pdf.name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="downloads" className="py-20 bg-gradient-to-b from-arc-blue/10 to-white">
       <div className="container mx-auto px-4">
@@ -136,6 +194,59 @@ const Downloads = () => {
           </p>
         </div>
 
+        {/* PDF Upload Section */}
+        <div className="mb-12">
+          <Card className="max-w-md mx-auto">
+            <CardHeader>
+              <CardTitle className="text-center">{downloadTexts.uploadTitle[language]}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-4">
+                <Input
+                  type="file"
+                  accept=".pdf"
+                  onChange={handlePdfUpload}
+                  className="cursor-pointer"
+                />
+                <p className="text-sm text-gray-500 text-center">
+                  {language === 'en' ? 'Select a PDF file to upload' : 'Ընտրեք PDF ֆայլ բեռնելու համար'}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Uploaded PDFs Section */}
+        {uploadedPdfs.length > 0 && (
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-arc-darkblue mb-6 text-center">
+              {downloadTexts.uploadedFiles[language]}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {uploadedPdfs.map((pdf) => (
+                <Card key={pdf.id} className="hover-scale transition-all duration-300">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{pdf.name}</CardTitle>
+                    <CardDescription>
+                      {language === 'en' ? 'Uploaded PDF Document' : 'Բեռնված PDF փաստաթուղթ'}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button 
+                      onClick={() => handlePdfDownload(pdf)}
+                      className="w-full"
+                    >
+                      <Download className="mr-2" />
+                      {downloadTexts.downloadButton[language]}
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Static Downloads Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category) => (
             <Card key={category.id} className="hover-scale transition-all duration-300">
