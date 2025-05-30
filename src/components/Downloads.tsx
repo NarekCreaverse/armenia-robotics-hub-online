@@ -1,4 +1,3 @@
-
 import { useLanguage } from "@/hooks/useLanguage";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -22,14 +21,8 @@ const Downloads = () => {
       id: 0,
       title: { en: "Hebocon Robot", am: "Հեբոկոն ռոբոտ" },
       description: { en: "Complete Hebocon robot guide and specifications", am: "Հեբոկոն ռոբոտի ամբողջական ուղեցույց և բնութագրեր" },
-      fileName: "hebocon_robot",
-      isMultiFile: true,
-      files: [
-        "/lovable-uploads/13bf4fbf-8716-4b6f-b8bb-7aa9b6e3e19f.png",
-        "/lovable-uploads/86fa3b26-699a-4127-8b78-436ed8bc9863.png", 
-        "/lovable-uploads/bc6f2df5-8a90-4d44-9071-b9358ac30892.png",
-        "/lovable-uploads/91c3e158-11f1-4fbb-9c16-f164b8ae0997.png"
-      ]
+      fileName: "hebocon_robot.pdf",
+      isMultiFile: false
     },
     {
       id: 1,
@@ -133,20 +126,8 @@ const Downloads = () => {
   };
 
   const handleDownload = (category: any) => {
-    if (category.isMultiFile && category.files) {
-      // Download multiple files for Hebocon Robot
-      category.files.forEach((fileUrl: string, index: number) => {
-        const link = document.createElement('a');
-        link.href = fileUrl;
-        link.download = `hebocon_robot_page_${index + 1}.webp`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-    } else {
-      // Single file download for other items
-      alert(`Download requested for: ${category.fileName}`);
-    }
+    // For all items including Hebocon Robot, just show alert with PDF file name
+    alert(`Download requested for: ${category.fileName}`);
   };
 
   const handlePdfUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
