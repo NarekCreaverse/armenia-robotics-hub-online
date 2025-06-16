@@ -12,7 +12,7 @@ const Downloads = () => {
       title: { en: "Hebocon Robot", am: "Հեբոկոն ռոբոտ" },
       description: { en: "Complete Hebocon robot guide and specifications", am: "Հեբոկոն ռոբոտի ամբողջական ուղեցույց և բնութագրեր" },
       fileName: "hebocon_robot_guide.pdf",
-      fileUrl: "/lovable-uploads/9ae2fb69-4289-4bc9-b7f8-9e5c0f81c03e.png",
+      fileUrl: "/lovable-uploads/119f1d59-2c75-435f-b4b3-f0a137d66a44.png",
       isMultiFile: false
     },
     {
