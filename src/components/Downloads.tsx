@@ -11,7 +11,8 @@ const Downloads = () => {
       id: 0,
       title: { en: "Hebocon Robot", am: "Հեբոկոն ռոբոտ" },
       description: { en: "Complete Hebocon robot guide and specifications", am: "Հեբոկոն ռոբոտի ամբողջական ուղեցույց և բնութագրեր" },
-      fileName: "hebocon_robot.pdf",
+      fileName: "hebocon_robot_guide.pdf",
+      fileUrl: "/lovable-uploads/9ae2fb69-4289-4bc9-b7f8-9e5c0f81c03e.png",
       isMultiFile: false
     },
     {
@@ -104,8 +105,18 @@ const Downloads = () => {
   };
 
   const handleDownload = (category: any) => {
-    // For all items including Hebocon Robot, just show alert with PDF file name
-    alert(`Download requested for: ${category.fileName}`);
+    if (category.id === 0 && category.fileUrl) {
+      // For Hebocon Robot, download the actual PDF file
+      const link = document.createElement('a');
+      link.href = category.fileUrl;
+      link.download = category.fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      // For other items, show alert with PDF file name
+      alert(`Download requested for: ${category.fileName}`);
+    }
   };
 
   return (
